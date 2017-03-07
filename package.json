@@ -1,5 +1,5 @@
 {
-  "name": "express-api-template",
+  "name": "0squadmerch-api",
   "version": "0.1.1",
   "private": true,
   "scripts": {
@@ -19,6 +19,7 @@
     "mongoose-unique-validator": "^1.0.3",
     "morgan": "^1.7.0",
     "multer": "^1.2.0",
+    "nodemon": "^1.11.0",
     "serve-favicon": "^2.3.2"
   },
   "devDependencies": {

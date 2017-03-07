@@ -1,6 +1,6 @@
 'use strict';
 
-const debug = require('debug')('express-api-template:users');
+const debug = require('debug')('0squadmerch-api:users');
 
 const controller = require('lib/wiring/controller');
 const models = require('app/models');
