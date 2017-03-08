@@ -22,9 +22,13 @@ const orderSchema = new mongoose.Schema({
   toJSON: { virtuals: true }
 });
 
-// orderSchema.virtual('sample').get(function length() {
-//   return 'sample';
-// });
+orderSchema.virtual('orderPrice').get(function() {
+  let total = 0;
+  for (let i = 0; i < this.items.length; i++) {
+    total += this.items[i].price * this.items[i].quantity;
+  }
+  return total;
+});
 
 const Order = mongoose.model('Order', orderSchema);
 
