@@ -2,13 +2,13 @@
 
 API="http://localhost:4741"
 URL_PATH="/orders"
-ID="58c05073a4f94105b4d374a7"
-TOKEN="rkErUEjkPNRl/1whgFOesQ2SwsPOFVak3RIGBIaMKMg=--w6T41R8p/ZCbVPTMYHgsrXm5agPlijcJ1HBVVBoI3VM="
+# ID="58c03a20a2f35325dcacab1b"
+TOKEN="Awwv3nUP5ikVdfZjBdmDRB9tic2DpmEWZrMx4VxJHpw=--02o/+Cm6fXEn66pKTaL29rDvmfTBupEQvSdcuHM5Z24="
 # NAME="shoes"
 # PRICE=49.99
 # DESCRIPTION="blue shoes"
 # IMG="path"
-VERB=GET
+VERB=POST
 
 curl "${API}${URL_PATH}/${ID}" \
   --include \
@@ -19,14 +19,25 @@ curl "${API}${URL_PATH}/${ID}" \
     "order": {
       "items": [
       {
-        "name": "shoes",
-        "price": 50,
+        "_id": "980ru3290",
+        "name": "shirt",
+        "price": 19.99,
+        "description": "cool shirt",
         "quantity": 2
       },
       {
-        "name": "tshirt",
-        "price": 20,
-        "quantity": 3
+        "_id": "80f0942",
+        "name": "shoes",
+        "price": 29.99,
+        "description": "cheap jordans",
+        "quantity": 1
+      },
+      {
+        "_id": "uc89ewfee23",
+        "name": "mug",
+        "price": 9.99,
+        "description": "#1 Dad",
+        "quantity": 1
       }
       ]
     }
