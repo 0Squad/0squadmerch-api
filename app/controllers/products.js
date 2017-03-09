@@ -23,41 +23,11 @@ const show = (req, res) => {
   });
 };
 
-const create = (req, res, next) => {
-  let product = Object.assign(req.body.product, {
-    _owner: req.user._id,
-  });
-  Product.create(product)
-    .then(product =>
-      res.status(201)
-        .json({
-          product: product.toJSON({ virtuals: true, user: req.user }),
-        }))
-    .catch(next);
-};
-
-const update = (req, res, next) => {
-  delete req.body._owner;
-  req.product.update(req.body.product)
-    .then(() => res.sendStatus(204))
-    .catch(next);
-};
-
-const destroy = (req, res, next) => {
-  req.product.remove()
-    .then(() => res.sendStatus(204))
-    .catch(next);
-};
-
 module.exports = controller({
   index,
   show,
-  create,
-  update,
-  destroy,
 }, { before: [
   { method: setUser, only: ['index', 'show'] },
   { method: authenticate, except: ['index', 'show'] },
   { method: setModel(Product), only: ['show'] },
-  { method: setModel(Product, { forUser: true }), only: ['update', 'destroy'] },
 ], });
