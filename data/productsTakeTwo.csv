@@ -1,8 +1,8 @@
 name,description,price,img
-shoes,Shoes with donuts on them,50,./assets/images/0_Squad_tee_1.jpg
-tshirt,White Tee shirt with 0Squad's logo,13,./assets/images/0_Squad_tee_2.jpg
-hoodie,White Hoodie with 0Squad logo,60,./assets/images/0_Squad_tee_3.jpg
-bandana,Bandana with 0Squad pattern,4,./assets/images/0_Squad_tee_4.jpg
-mug,White Mug with 0Squad logo,11,./assets/images/0_Squad_tee_5.jpg
-keychain,Keychain of 0Squad donut,1,./assets/images/0_Squad_tee_6.jpg
-socks,Socks with 0Squad donut pattern,6,./assets/images/0_Squad_tee_7.jpg
+shoes,Shoes with donuts on them,50,/assets/images/0_Squad_tee_1.jpg
+tshirt,White Tee shirt with 0Squad's logo,13,/assets/images/0_Squad_tee_2.jpg
+hoodie,White Hoodie with 0Squad logo,60,/assets/images/0_Squad_tee_3.jpg
+bandana,Bandana with 0Squad pattern,4,/assets/images/0_Squad_tee_4.jpg
+mug,White Mug with 0Squad logo,11,/assets/images/0_Squad_tee_5.jpg
+keychain,Keychain of 0Squad donut,1,/assets/images/0_Squad_tee_6.jpg
+socks,Socks with 0Squad donut pattern,6,/assets/images/0_Squad_tee_7.jpg
