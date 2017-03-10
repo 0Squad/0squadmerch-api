@@ -592,6 +592,7 @@ Reach goals:
 - Users can comment/review an item
 - Users can share an item to social media
 - Users can NOT enter a fake email address
+- Users can enter a mailing address
 
 ### Built With:
 - MongoDB
