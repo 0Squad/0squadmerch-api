@@ -1,4 +1,4 @@
-[<img src="./images/0SquadLogo.png" style="width:75px;height:75px"/>](https://github.com/0Squad)
+[<img src="./images/0SquadLogo.png"/>](https://github.com/0Squad)
 
 # 0Squad Merch API
 
