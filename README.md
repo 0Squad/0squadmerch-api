@@ -443,7 +443,7 @@ If the request is successful, the response will have an HTTP status of 200 OK an
   }
 }
 ```
-This structure allows us to mimic the `create` function on the front-end if users change their mind after clicking "checkout".
+This structure allows us to mimic the `create` controller function to return new data and be more flexible with our checkout.
 
 If the request is unsuccessful, the response will have an HTTP status of 400 Bad Request.
 
