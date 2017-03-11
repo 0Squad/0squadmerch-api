@@ -229,40 +229,41 @@ sh scripts/ordermaster.sh
 
 #### create
 
-The `create` action is a *POST* that creates a new order for the user signed in. It expects a POST of `order` specifying `items`, which is an array of objects containing an item id number(`_id`), `name`, `price`, `description`, and `quantity`.
+The `create` action is a *POST* that creates a new order for the user signed in. It expects a POST of `order` specifying `complete` and `items`, which is an array of objects containing an item id number(`_id`), `name`, `price`, `description`, and `quantity`. We also get a virtual attribute, `orderPrice`, which takes the price of each item in the `items` array and multiplies it by the quantity for the respective item, and adds each item's product to get a total amount.
 
 Request:
 
 ```sh
-curl "${API}${URL_PATH}/${ID}" \
+curl http://localhost:4741/orders \
   --include \
   --request POST \
   --header "Content-Type: application/json" \
   --header "Authorization: Token token=${TOKEN}" \
   --data '{
     "order": {
+      "complete": false,
       "items": [
-      {
-        "_id": "980ru3290",
-        "name": "shirt",
-        "price": 19.99,
-        "description": "cool shirt",
-        "quantity": 2
-      },
-      {
-        "_id": "80f0942",
-        "name": "shoes",
-        "price": 29.99,
-        "description": "cheap jordans",
-        "quantity": 1
-      },
-      {
-        "_id": "uc89ewfee23",
-        "name": "mug",
-        "price": 9.99,
-        "description": "#1 Dad",
-        "quantity": 1
-      }
+        {
+          "_id": "980ru3290",
+          "name": "shirt",
+          "price": 19.99,
+          "description": "cool shirt",
+          "quantity": 2
+        },
+        {
+          "_id": "80f0942",
+          "name": "shoes",
+          "price": 29.99,
+          "description": "cheap jordans",
+          "quantity": 1
+        },
+        {
+          "_id": "uc89ewfee23",
+          "name": "mug",
+          "price": 9.99,
+          "description": "#1 Dad",
+          "quantity": 1
+        }
       ]
     }
   }'
@@ -271,29 +272,39 @@ curl "${API}${URL_PATH}/${ID}" \
 The response will have an HTTP status of 201 Created, and the body will contain JSON of the created order:
 ```json
 {
-  "items": [
-    {
-      "_id": "980ru3290",
-      "name": "shirt",
-      "price": 19.99,
-      "description": "cool shirt",
-      "quantity": 2
-    },
-    {
-      "_id": "80f0942",
-      "name": "shoes",
-      "price": 29.99,
-      "description": "cheap jordans",
-      "quantity": 1
-    },
-    {
-      "_id": "uc89ewfee23",
-      "name": "mug",
-      "price": 9.99,
-      "description": "#1 Dad",
-      "quantity": 1
-    }
-  ]
+  "order":{
+    "__v":0,
+    "updatedAt":"2017-03-09T14:24:31.707Z",
+    "createdAt":"2017-03-09T14:24:31.707Z",
+    "_owner":"58c04feba4f94105b4d374a5",
+    "_id":"58c1659fd96d962fb8a3d20d",
+    "complete":false,
+    "items":[
+      {
+        "quantity":2,
+        "description":"cool shirt",
+        "price":19.99,
+        "name":"shirt",
+        "_id":"980ru3290"
+      },
+      {
+        "quantity":1,
+        "description":"cheap jordans",
+        "price":29.99,
+        "name":"shoes",
+        "_id":"80f0942"
+      },
+      {
+        "quantity":1,
+        "description":"#1 Dad",
+        "price":9.99,
+        "name":"mug",
+        "_id":"uc89ewfee23"
+      }
+    ],
+    "orderPrice":79.96,
+    "id":"58c1659fd96d962fb8a3d20d"
+  }
 }
 ```
 
@@ -321,7 +332,7 @@ The response body will contain JSON containing an array of past orders, e.g.:
       "createdAt":"2017-03-08T18:40:57.755Z",
       "_owner":"58c04feba4f94105b4d374a5",
       "__v":0,
-      "complete":true,
+      "complete":false,
       "items":[
         {
           "name":"tshirt",
@@ -357,7 +368,7 @@ The response body will contain JSON containing an array of past orders, e.g.:
       "createdAt":"2017-03-09T22:12:26.014Z",
       "_owner":"58c04feba4f94105b4d374a5",
       "__v":0,
-      "Complete":true,
+      "Complete":false,
       "Items":[
         {
           "Name":"tshirt",
@@ -382,7 +393,7 @@ The `show` action is a *GET* that retrieves a specific order from the order hist
 Request:
 
 ```sh
-curl http://localhost:4741/orders/$ID \
+curl http://localhost:4741/orders/${ID} \
   --include \
   --request GET \
   --header "Authorization: Token token=$TOKEN"
@@ -420,7 +431,7 @@ The `update` action is a *PATCH* that updates an order for a user who has author
 
 Request:
 ```sh
-curl "${API}${URL_PATH}/${ID}" \
+curl http://localhost:4741/orders/${ID} \
   --include \
   --request PATCH \
   --header "Content-Type: application/json" \
@@ -428,15 +439,16 @@ curl "${API}${URL_PATH}/${ID}" \
   --data '{
     "order": {
       "items": [
-      {
-        "Name":"tshirt",
-        "Price":"13",
-        "description":"white tee",
-        "Img":"path",
-        "_id":"58c05736e0a8d00e310fe959",
-        "Quantity":"1"
-      }
-      ]
+        {
+          "Name":"tshirt",
+          "Price":"13",
+          "description":"white tee",
+          "Img":"path",
+          "_id":"58c05736e0a8d00e310fe959",
+          "Quantity":"1"
+        }
+      ],
+      "complete": true
     }
   }'
 ```
@@ -451,7 +463,7 @@ The `destroy` action is a *DELETE* that deletes a past order for a user who has 
 
 Request:
 ```sh
-curl http://localhost:4741/orders/$ID \
+curl http://localhost:4741/orders/${ID} \
   --include \
   --request DELETE \
   --header "Authorization: Token token=$TOKEN"
@@ -546,25 +558,29 @@ All charge action requests must include a valid HTTP header `Authorization: Toke
 
 #### create
 
-The `create` action is a *POST* that creates a new charge for the user signed in. It expects a POST of `charge` specifying `CC stuff`.
+The `create` action is a *POST* that creates a new charge for the user signed in. It expects a POST of `charge` specifying `stripeToken`. For the purpose of this project, we wanted to avoid actually saving anybody's card information. Stripe creates a token with every charge, so our company could technically just use that token to charge someone's card and not run into liability issues. This `create` action simply gives us proof that we successfully stored the charge token.
 
 Request:
 
 ```sh
-curl "${API}${URL_PATH}/${ID}" \
+curl http://localhost:4741/charges/${ID} \
   --include \
   --request POST \
   --header "Content-Type: application/json" \
   --header "Authorization: Token token=${TOKEN}" \
   --data '{
-
+    "stripeToken": <some token>
   }'
 ```
 
 The response will have an HTTP status of 201 Created, and the body will contain JSON of the created order:
 ```json
-{
-
+"charge": {
+  "_id":"58c1d34ad0745f4aaadc189d",
+  "updatedAt":"2017-03-09T22:12:26.014Z",
+  "createdAt":"2017-03-09T22:12:26.014Z",
+  "__v":0,
+  "stripeToken":"<some token>"
 }
 ```
 
