@@ -457,7 +457,7 @@ curl http://localhost:4741/orders/${ID} \
   }'
 ```
 
-If the request is successful, the response will have an HTTP status of 204 No Content.
+If the request is successful, the response will have an HTTP status of 200 OK and contain JSON of the updated cart
 
 If the request is unsuccessful, the response will have an HTTP status of 400 Bad Request.
 
