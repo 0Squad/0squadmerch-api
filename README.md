@@ -1,8 +1,12 @@
 [<img src="./images/0SquadLogo.png" style="width:75px;height:75px"/>](https://github.com/0Squad)
 
-[FRONT END REPO](https://github.com/0Squad/0squadmerch)
-[DEPLOYED HEROKU SITE](https://murmuring-sea-28730.herokuapp.com/)
-[DEPLOYED APP](0sqaud.github.io/0squadmerch)
+# 0Squad Merch API
+
+An API to store products and orders data and allow customers to register as users and purchase our 0Squad merchandise.
+
+- [FRONT END REPO](https://github.com/0Squad/0squadmerch)
+- [DEPLOYED HEROKU SITE](https://murmuring-sea-28730.herokuapp.com/)
+- [DEPLOYED APP](0sqaud.github.io/0squadmerch)
 
 ## API End-Points
 
@@ -610,8 +614,9 @@ Reach goals:
 - Users can NOT enter a fake email address
 - Users can enter a mailing address
 
-### Built With:
+### Technologies Used:
 - MongoDB
 - Mongoose
 - Node.js
 - Express.js
+- [Stripe](https://stripe.com/)
