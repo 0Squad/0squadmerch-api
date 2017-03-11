@@ -390,45 +390,6 @@ The response body will contain JSON containing an array of past orders, e.g.:
 }
 ```
 
-#### show
-
-The `show` action is a *GET* that retrieves a specific order from the order history.
-
-Request:
-
-```sh
-curl http://localhost:4741/orders/${ID} \
-  --include \
-  --request GET \
-  --header "Authorization: Token token=$TOKEN"
-```
-
-The response body will contain JSON containing a single order, e.g.:
-```json
-{
-  "order":{
-    "_id":"58c1d34ad0745f4aaadc189d",
-    "updatedAt":"2017-03-09T22:12:26.014Z",
-    "createdAt":"2017-03-09T22:12:26.014Z",
-    "_owner":"58c04feba4f94105b4d374a5",
-    "__v":0,
-    "complete":true,
-    "items":[
-      {
-        "name":"tshirt",
-        "price":"13",
-        "description":"white tee",
-        "img":"path",
-        "_id":"58c05736e0a8d00e310fe959",
-        "quantity":"2"
-      }
-    ],
-    "orderPrice":26,
-    "id":"58c1d34ad0745f4aaadc189d"
-  }
-}
-```
-
 #### update
 
 The `update` action is a *PATCH* that updates an order for a user who has authorization. It expects a PATCH of `order` specifying `items` and `complete`.
@@ -457,7 +418,32 @@ curl http://localhost:4741/orders/${ID} \
   }'
 ```
 
-If the request is successful, the response will have an HTTP status of 200 OK and contain JSON of the updated cart
+If the request is successful, the response will have an HTTP status of 200 OK and contain JSON of the updated cart:
+```json
+{
+  "order":{
+    "_id":"58c1d34ad0745f4aaadc189d",
+    "updatedAt":"2017-03-09T22:12:26.014Z",
+    "createdAt":"2017-03-09T22:12:26.014Z",
+    "_owner":"58c04feba4f94105b4d374a5",
+    "__v":0,
+    "complete":true,
+    "items":[
+      {
+        "name":"tshirt",
+        "price":"13",
+        "description":"white tee",
+        "img":"path",
+        "_id":"58c05736e0a8d00e310fe959",
+        "quantity":"1"
+      }
+    ],
+    "orderPrice":13,
+    "id":"58c1d34ad0745f4aaadc189d"
+  }
+}
+```
+This structure allows us to mimic the `create` function on the front-end if users change their mind after clicking "checkout".
 
 If the request is unsuccessful, the response will have an HTTP status of 400 Bad Request.
 
