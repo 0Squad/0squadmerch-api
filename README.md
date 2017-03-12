@@ -34,6 +34,27 @@ In order to make requests from your deployed client application, you will need
 to set `CLIENT_ORIGIN` in the environment (e.g. `heroku config:set
 CLIENT_ORIGIN=https://<github-username>.github.io`).
 
+## Our Team Process
+
+Initially, we tri-programmed all the different parts of the back-end and tested everything on the front-end together. Each morning we wrote our goals for the day to give us some sort of schedule. We typically had both front-end and back-end goals each day. In this first stage of the project, we switched off machines with each milestone, so one person would type while the other two gave feedback and evaluated the situation. Whenever we hit a wall, we would whiteboard together. Ultimately, we worked smoothly and efficiently as a team and were able to communicate via Slack, our project issue queues, or text-message on the next day's goals or ideas.
+
+## Scaffolding
+
+For this project, we used [Andrew Goode's](https://github.com/akgoode) scaffold generator. The scaffold script allows us to create templates for a controller and a model for whichever resource we need. It expects a pluralized form of the  resource, and it will accept attributes. For example, by running
+```node
+node generate/scaffold.js products name:String price:Number description:String img:String
+```
+we were able to generate our products controller and model.
+
+There is more information on Andrew's generator [here](https://github.com/akgoode/express-api-generator).
+
+## Technologies Used:
+- MongoDB
+- Mongoose
+- Node.js
+- Express.js
+- [Stripe](https://stripe.com/)
+
 ## API End-Points
 
 | Verb   | URI Pattern            | Controller#Action |
@@ -589,20 +610,6 @@ The response will have an HTTP status of 201 Created, and the body will contain 
 }
 ```
 
-### Scaffolding
-
-For this project, we used [Andrew Goode's](https://github.com/akgoode) scaffold generator. The scaffold script allows us to create templates for a controller and a model for whichever resource we need. It expects a pluralized form of the  resource, and it will accept attributes. For example, by running
-```node
-node generate/scaffold.js products name:String price:Number description:String img:String
-```
-we were able to generate our products controller and model.
-
-There is more information on Andrew's generator [here](https://github.com/akgoode/express-api-generator).
-
-### Our Team Process
-
-Initially, we tri-programmed all the different parts of the back-end and tested everything on the front-end together. Each morning we wrote our goals for the day to give us some sort of schedule. We typically had both front-end and back-end goals each day. In this first stage of the project, we switched off machines with each milestone, so one person would type while the other two gave feedback and evaluated the situation. Whenever we hit a wall, we would whiteboard together. Ultimately, we worked smoothly and efficiently as a team and were able to communicate via Slack, our project issue queues, or text-message on the next day's goals or ideas.
-
 ### Future Goals
 
 We had a few reach goals while writing up our user stories:
@@ -614,10 +621,3 @@ Reach goals:
 - Users can share an item to social media
 - Users can NOT enter a fake email address
 - Users can enter a mailing address
-
-### Technologies Used:
-- MongoDB
-- Mongoose
-- Node.js
-- Express.js
-- [Stripe](https://stripe.com/)
