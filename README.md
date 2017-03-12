@@ -8,6 +8,32 @@ An API to store products and orders data and allow customers to register as user
 - [DEPLOYED HEROKU SITE](https://murmuring-sea-28730.herokuapp.com/)
 - [DEPLOYED APP](0sqaud.github.io/0squadmerch)
 
+## Dependencies
+
+Install with `npm install`.
+
+-   [`express`](http://expressjs.com/)
+-   [`mongoose`](http://mongoosejs.com/)
+-   [`nodemon`](https://nodemon.io/)
+
+## Installation
+
+1.  Fork and clone this repository.
+1.  Install dependencies with `npm install`.
+1.  Set a SECRET_KEY in the environment.
+1.  Run the API server with `nodemon`.
+
+For development and testing, set the SECRET_KEY from the root of your
+ repository using
+
+```sh
+echo SECRET_KEY=$(/usr/local/opt/openssl/bin/openssl rand -base64 66 | tr -d '\n') >>.env
+```
+
+In order to make requests from your deployed client application, you will need
+to set `CLIENT_ORIGIN` in the environment (e.g. `heroku config:set
+CLIENT_ORIGIN=https://<github-username>.github.io`).
+
 ## API End-Points
 
 | Verb   | URI Pattern            | Controller#Action |
@@ -249,23 +275,23 @@ curl http://localhost:4741/orders \
       "items": [
         {
           "_id": "980ru3290",
-          "name": "shirt",
-          "price": 19.99,
-          "description": "cool shirt",
+          "name": "T-Shirt",
+          "price": 13,
+          "description": "White Tee shirt with 0Squad logo",
           "quantity": 2
         },
         {
           "_id": "80f0942",
-          "name": "shoes",
-          "price": 29.99,
-          "description": "cheap jordans",
+          "name": "Shoes",
+          "price": 50,
+          "description": "Shoes with donuts on them",
           "quantity": 1
         },
         {
           "_id": "uc89ewfee23",
-          "name": "mug",
-          "price": 9.99,
-          "description": "#1 Dad",
+          "name": "Mug",
+          "price": 11,
+          "description": "Mug with 0Squad logo",
           "quantity": 1
         }
       ]
@@ -286,27 +312,27 @@ The response will have an HTTP status of 201 Created, and the body will contain 
     "items":[
       {
         "quantity":2,
-        "description":"cool shirt",
-        "price":19.99,
-        "name":"shirt",
+        "description":"White Tee shirt with 0Squad logo",
+        "price":13,
+        "name":"T-Shirt",
         "_id":"980ru3290"
       },
       {
         "quantity":1,
-        "description":"cheap jordans",
-        "price":29.99,
-        "name":"shoes",
+        "description":"Shoes with donuts on them",
+        "price":50,
+        "name":"Shoes",
         "_id":"80f0942"
       },
       {
         "quantity":1,
-        "description":"#1 Dad",
-        "price":9.99,
-        "name":"mug",
+        "description":"Mug with 0Squad logo",
+        "price":11,
+        "name":"Mug",
         "_id":"uc89ewfee23"
       }
     ],
-    "orderPrice":79.96,
+    "orderPrice":87,
     "id":"58c1659fd96d962fb8a3d20d"
   }
 }
@@ -339,26 +365,26 @@ The response body will contain JSON containing an array of past orders, e.g.:
       "complete":false,
       "items":[
         {
-          "name":"tshirt",
+          "name":"T-Shirt",
           "price":"13",
-          "description":"white tee",
-          "img":"path",
+          "description":"White Tee shirt with 0Squad logo",
+          "img":"<image path>",
           "_id":"58c05736e0a8d00e310fe959",
           "quantity":"1"
         },
         {
-          "name":"sweatshirt",
+          "name":"Hoodie",
           "price":"60",
-          "description":"hoodie",
-          "img":"path",
+          "description":"Hoodie with 0Squad logo",
+          "img":"<image path>",
           "_id":"58c0574ce0a8d00e310fe95a",
           "Quantity":"1"
         },
         {
-          "Name":"shoes",
+          "Name":"Shoes",
           "Price":"50",
-          "description":"blue shoes",
-          "Img":"path",
+          "description":"Shoes with donuts on them",
+          "Img":"<image path>",
           "_id":"58c0572ae0a8d00e310fe958",
           "Quantity":"1"
         }
@@ -375,12 +401,12 @@ The response body will contain JSON containing an array of past orders, e.g.:
       "Complete":false,
       "Items":[
         {
-          "Name":"tshirt",
-          "Price":"13",
-          "description":"white tee",
-          "Img":"path",
+          "name":"T-Shirt",
+          "price":"13",
+          "description":"White Tee shirt with 0Squad logo",
+          "img":"<image path>",
           "_id":"58c05736e0a8d00e310fe959",
-          "Quantity":"2"
+          "quantity":"2"
         }
       ],
       "orderPrice":26,
