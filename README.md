@@ -275,23 +275,23 @@ curl http://localhost:4741/orders \
       "items": [
         {
           "_id": "980ru3290",
-          "name": "T-Shirt",
+          "name": "0Squad Tee",
           "price": 13,
-          "description": "White Tee shirt with 0Squad logo",
+          "description": "White tee shirt with 0Squad logo.",
           "quantity": 2
         },
         {
           "_id": "80f0942",
-          "name": "Shoes",
+          "name": "Sh0es",
           "price": 50,
-          "description": "Shoes with donuts on them",
+          "description": "Blue shoes with 0Squad donuts pattern.",
           "quantity": 1
         },
         {
           "_id": "uc89ewfee23",
-          "name": "Mug",
+          "name": "Teamw0rk Mug",
           "price": 11,
-          "description": "Mug with 0Squad logo",
+          "description": "Black mug with 3 0Squad donuts.",
           "quantity": 1
         }
       ]
@@ -312,23 +312,23 @@ The response will have an HTTP status of 201 Created, and the body will contain 
     "items":[
       {
         "quantity":2,
-        "description":"White Tee shirt with 0Squad logo",
+        "description":"White tee shirt with 0Squad logo.",
         "price":13,
-        "name":"T-Shirt",
+        "name":"0Squad Tee",
         "_id":"980ru3290"
       },
       {
         "quantity":1,
-        "description":"Shoes with donuts on them",
+        "description":"Blue shoes with 0Squad donuts pattern.",
         "price":50,
-        "name":"Shoes",
+        "name":"Sh0es",
         "_id":"80f0942"
       },
       {
         "quantity":1,
-        "description":"Mug with 0Squad logo",
+        "description":"Black mug with 3 0Squad donuts.",
         "price":11,
-        "name":"Mug",
+        "name":"Teamw0rk Mug",
         "_id":"uc89ewfee23"
       }
     ],
@@ -347,7 +347,7 @@ Request:
 ```sh
 curl http://localhost:4741/orders \
   --include \
-  --request GET
+  --request GET \
   --header "Authorization: Token token=$TOKEN"
 ```
 
@@ -365,25 +365,25 @@ The response body will contain JSON containing an array of past orders, e.g.:
       "complete":false,
       "items":[
         {
-          "name":"T-Shirt",
+          "name":"0Squad Tee",
           "price":"13",
-          "description":"White Tee shirt with 0Squad logo",
+          "description":"White tee shirt with 0Squad logo.",
           "img":"<image path>",
           "_id":"58c05736e0a8d00e310fe959",
           "quantity":"1"
         },
         {
-          "name":"Hoodie",
+          "name":"H00die",
           "price":"60",
-          "description":"Hoodie with 0Squad logo",
+          "description":"Mint Green Hoodie with three 0Squad donuts.",
           "img":"<image path>",
           "_id":"58c0574ce0a8d00e310fe95a",
           "Quantity":"1"
         },
         {
-          "Name":"Shoes",
+          "Name":"Sh0es",
           "Price":"50",
-          "description":"Shoes with donuts on them",
+          "description":"Blue shoes with 0Squad donuts pattern.",
           "Img":"<image path>",
           "_id":"58c0572ae0a8d00e310fe958",
           "Quantity":"1"
@@ -401,9 +401,9 @@ The response body will contain JSON containing an array of past orders, e.g.:
       "Complete":false,
       "Items":[
         {
-          "name":"T-Shirt",
+          "name":"0Squad Tee",
           "price":"13",
-          "description":"White Tee shirt with 0Squad logo",
+          "description":"White tee shirt with 0Squad logo.",
           "img":"<image path>",
           "_id":"58c05736e0a8d00e310fe959",
           "quantity":"2"
@@ -431,10 +431,10 @@ curl http://localhost:4741/orders/${ID} \
     "order": {
       "items": [
         {
-          "Name":"tshirt",
+          "Name":"0Squad Tee",
           "Price":"13",
-          "description":"white tee",
-          "Img":"path",
+          "description":"White tee shirt with 0Squad logo.",
+          "Img":"<image path>",
           "_id":"58c05736e0a8d00e310fe959",
           "Quantity":"1"
         }
@@ -456,10 +456,10 @@ If the request is successful, the response will have an HTTP status of 200 OK an
     "complete":true,
     "items":[
       {
-        "name":"tshirt",
+        "name":"0Squad Tee",
         "price":"13",
-        "description":"white tee",
-        "img":"path",
+        "description":"White tee shirt with 0Squad logo.",
+        "img":"<image path>",
         "_id":"58c05736e0a8d00e310fe959",
         "quantity":"1"
       }
@@ -491,7 +491,7 @@ If the request is unsuccessful, the response will have an HTTP status of 400 Bad
 
 ### Product Actions
 
-For the time being, Product will be treated as a resource database. We bulk loaded data from a [CSV](https://github.com/0Squad/0squadmerch-api/blob/master/data/productsTakeTwo.csv) we made. Users can choose from the products provided to create orders. The `index` and `show` action requests are there so users can know what products we sell. Later down the line we may add an administrative user position that can create, update, or destroy products.
+For the time being, Product will be treated as a resource database. We bulk loaded data from a [CSV](https://github.com/0Squad/0squadmerch-api/blob/master/data/finalProducts.csv) we made. Users can choose from the products provided to create orders. The `index` and `show` action requests are there so users can know what products we sell. Later down the line we may add an administrative user position that can create, update, or destroy products.
 
 For testing purposes, we created a master script in which we could hard-code the verb and simply run:
 ```sh
@@ -506,7 +506,8 @@ Request:
 ```sh
 curl http://localhost:4741/products \
   --include \
-  --request GET
+  --request GET \
+  --header "Authorization: Token token=$TOKEN"
 ```
 
 The response body will contain JSON containing an array of products, e.g.:
@@ -515,8 +516,8 @@ The response body will contain JSON containing an array of products, e.g.:
   "products":[
     {
       "_id":"58c2b7dd2023c6f5deb0e902",
-      "name":"Shoes",
-      "description":"Shoes with donuts on them",
+      "name":"Sh0es",
+      "description":"Blue shoes with 0Squad donuts pattern.",
       "price":50,
       "img":"https://s3.amazonaws.com/0squad-bucket/images/0_Squad_1.jpg",
       "id":"58c2b7dd2023c6f5deb0e902"
@@ -539,32 +540,21 @@ The `show` action is a *GET* that retrieves a specific product.
 
 Request:
 ```sh
-curl http://localhost:4741/products \
+curl http://localhost:4741/products/${ID} \
   --include \
-  --request GET
+  --request GET \
+  --header "Authorization: Token token=$TOKEN"
 ```
 
-The response body will contain JSON containing an array of products, e.g.:
+The response body will contain JSON of the product, e.g.:
 ```json
 {
-  "products":[
-    {
-      "_id":"58c2b7dd2023c6f5deb0e902",
-      "name":"Shoes",
-      "description":"Shoes with donuts on them",
-      "price":50,
-      "img":"https://s3.amazonaws.com/0squad-bucket/images/0_Squad_1.jpg",
-      "id":"58c2b7dd2023c6f5deb0e902"
-    },
-    {
-      "_id":"58c2b7dd2023c6f5deb0e903",
-      "name":"T-shirt",
-      "description":"White Tee shirt with 0Squad's logo",
-      "price":13,
-      "img":"https://s3.amazonaws.com/0squad-bucket/images/0_Squad_2.jpg",
-      "id":"58c2b7dd2023c6f5deb0e903"
-    }
-  ]
+  "_id":"58c2b7dd2023c6f5deb0e902",
+  "name":"Sh0es",
+  "description":"Blue shoes with 0Squad donuts pattern.",
+  "price":50,
+  "img":"https://s3.amazonaws.com/0squad-bucket/images/0_Squad_1.jpg",
+  "id":"58c2b7dd2023c6f5deb0e902"
 }
 ```
 
