@@ -45,7 +45,6 @@ CLIENT_ORIGIN=https://<github-username>.github.io`).
 | POST  | `/orders` | `orders#create`  |
 | PATCH  | `/orders` | `orders#update`  |
 | GET | `/orders`        | `orders#index`   |
-| GET   | `/orders/:id`             | `orders#show`    |
 | DELETE   | `/orders/:id`             | `orders#destroy`    |
 | GET  | `/products` | `products#index`  |
 | GET | `/products/:id`        | `products#show`   |
