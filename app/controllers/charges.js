@@ -8,7 +8,7 @@ const authenticate = require('./concerns/authenticate');
 // const setUser = require('./concerns/set-current-user');
 // const setModel = require('./concerns/set-mongoose-model');
 
-const create = (req, res, next) => {
+const create = (req, res) => {
   let charge = Object.assign(req.body, {
     _owner: req.user._id,
   });
@@ -16,7 +16,9 @@ const create = (req, res, next) => {
     .then(() => {
       res.sendStatus(201);
     })
-    .catch(next);
+    .catch(() => {
+      res.sendStatus(401);
+    });
 };
 
 module.exports = controller({

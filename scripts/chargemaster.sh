@@ -3,8 +3,8 @@
 API="http://localhost:4741"
 URL_PATH="/charges"
 # ID="58ba357cf61cbefc4823f8ac"
-TOKEN="O7NGYZkDWTlgh+YhhQ3OpEWJn9TCemO6TVyDiabj88A=--o/6Ko5bmTmdQBmKDKnKBnUO8VZK/ebmwpilHuVA3n2E="
-TEST="blahblahblah"
+TOKEN="N0QS75a0A28SO2J4iyx+kEERa9tN3elvHeG/nabr8AI=--R/Ffz2QFQLHHDO7L4Ag7FaatYkds8T1gydYfFMziTz0="
+TEST="cdjxk38dlke89r5iodkl"
 VERB=POST
 
 curl "${API}${URL_PATH}/${ID}" \
