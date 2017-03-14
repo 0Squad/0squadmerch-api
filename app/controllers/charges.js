@@ -4,30 +4,24 @@ const controller = require('lib/wiring/controller');
 const models = require('app/models');
 const Charge = models.charge;
 
-// const authenticate = require('./concerns/authenticate');
+const authenticate = require('./concerns/authenticate');
 // const setUser = require('./concerns/set-current-user');
 // const setModel = require('./concerns/set-mongoose-model');
 
 const create = (req, res, next) => {
-  console.log(req.body);
-
-  let charge = Object.assign(req.body);
+  let charge = Object.assign(req.body, {
+    _owner: req.user._id,
+  });
   Charge.create(charge)
-    .then(charge =>
-      res.status(201)
-        .json({
-          charge: charge.toJSON({ virtuals: true, user: req.user }),
-        }))
+    .then(() => {
+      res.sendStatus(201);
+    })
     .catch(next);
 };
 
 module.exports = controller({
   create,
-}
-// }, { before: [
-//   { method: setUser, only: ['index', 'show'] },
-//   { method: authenticate, except: ['index', 'show'] },
-//   { method: setModel(Charge), only: ['show'] },
-//   { method: setModel(Charge, { forUser: true }), only: ['update', 'destroy'] },
-// ], }
+}, { before: [
+  { method: authenticate, only: ['create'] },
+], }
 );
